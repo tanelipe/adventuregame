@@ -66,6 +66,7 @@ Game::~Game()
 
 }
 ////////////////////////////////////////////////////////////////////////////////
+// Taneli Peltoniemi - Added the GameOverException, InvalidCommandException
 void Game::Play()
 {
   string cmd;
@@ -80,24 +81,27 @@ void Game::Play()
   
   player.SetGame(this);
   
-  try {
-	srand(time(NULL));
-	while(running)
-	{
-		renderer->Render(GetCurrentRoom()->GetDescription());
-		renderer->Render("\n> ");
+  srand(time(NULL));
+  while(running)
+  {
+    renderer->Render(GetCurrentRoom()->GetDescription());
+	renderer->Render("\n> ");
 
-		getline(cin,cmd);
+	getline(cin,cmd);
 
+	try {
 		CommandFactory comm(this);
 		ICommand *pCommand = comm.Create( cmd ); 
 		if ( pCommand ) pCommand->Execute();
 			delete pCommand;
 
 		GetCurrentRoom()->Update();
+	} catch(GameOverException &gameover) {
+		running = false;
+		renderer->Render(gameover.what());
+	} catch(InvalidCommandException &invalidCommandException) {
+	    renderer->Render(invalidCommandException.what());
 	}
-  } catch(GameOverException &exception) {
-	renderer->Render(exception.what());
   }
   // final message to player
   renderer->Render("Exiting, bye!\n");

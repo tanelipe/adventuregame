@@ -11,6 +11,7 @@
 #include "UnknownCommand.h"
 #include "MoveCommand.h"
 #include "Game.h"
+#include "globals.h"
 #include <sstream>
 #include <string>
 #include <iostream>
@@ -71,7 +72,7 @@ CommandFactory::Create( const std::string & str )
     }
 
   }
-
-  return new UnknownCommand(m_pGame);  
+  // Taneli Peltoniemi
+  throw InvalidCommandException();
 }
 ////////////////////////////////////////////////////////////////////////////////

@@ -36,8 +36,10 @@ public:
       GetGame()->GetRenderer()->Render(s.str());
 
       e.Attack(&player);
+	  
+	  // Taneli Peltoniemi
 	  if(player.GetHitpoints() <= 0) {
-		throw GameOverException("You have died");
+		throw GameOverException("You have died\n");
 	  }
     }
 
