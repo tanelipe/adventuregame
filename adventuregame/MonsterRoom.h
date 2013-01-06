@@ -31,6 +31,7 @@ public:
   /// Makes enemy attack player once on every turn.
   void Update() 
   {
+   
     if ( e.IsAlive() && noticedPlayer )
     {
       std::ostringstream s;

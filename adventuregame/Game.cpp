@@ -195,6 +195,9 @@ int Game::LoadGameState() {
 		if(room != NULL) {
 			savegame >> iTmp;
 			room->GetEnemy().SetHitpoints(iTmp);
+			if(!room->GetEnemy().IsAlive()) {
+				room->SetDescription("You are in the monster room. There is a pretty dead orc here!");
+			}
 		}
 		savegame.close();	
 		return 1;
