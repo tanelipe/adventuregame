@@ -33,6 +33,9 @@ public:
   Player & GetPlayer();
   Room * GetCurrentRoom();
   void SetCurrentRoom( Room *pRoom );
+  
+  void SaveGameState();
+  int LoadGameState();
 };
 ////////////////////////////////////////////////////////////////////////////////
 #endif

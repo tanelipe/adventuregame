@@ -18,12 +18,15 @@ private:
   Enemy e;
   bool noticedPlayer;
 public:
-  MonsterRoom()
+  MonsterRoom() : Room(2)
   {
     noticedPlayer = false;
     e.SetName( "Orc");
     SetDescription("You are in the monster room. There is an orc here!");
   }
+  
+  Enemy& GetEnemy() { return e; }
+  
   ////////////////////
   /// Makes enemy attack player once on every turn.
   void Update() 

@@ -10,6 +10,7 @@
 #include "AttackCommand.h"
 #include "UnknownCommand.h"
 #include "MoveCommand.h"
+#include "SaveCommand.h"
 #include "Game.h"
 #include "globals.h"
 #include <sstream>
@@ -70,7 +71,11 @@ CommandFactory::Create( const std::string & str )
       command->SetDirection(West);
       return command;
     }
-
+  }
+  // Taneli Peltoniemi
+  if( word == "save") 
+  {
+	return new SaveCommand(m_pGame);
   }
   // Taneli Peltoniemi
   throw InvalidCommandException();

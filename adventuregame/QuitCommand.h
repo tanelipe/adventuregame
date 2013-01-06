@@ -15,6 +15,7 @@ public:
   QuitCommand( Game *pGame ) : Command(pGame){}
   void Execute()
   {
+	GetGame()->SaveGameState();
     GetGame()->SetRunning(false);
   }
 };

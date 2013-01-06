@@ -74,9 +74,14 @@ void Game::Play()
   ostringstream s;
   s << "by " << DEV_NAME << "(c) " << YEAR << ". Licensed under GPLv3.\n";
   renderer->Render(s.str());
-  Player::AskInfo(player);
-  renderer->Render("\nPlayer statistics:\n\n");
-  player.PrintSummary();
+  if(LoadGameState()) {
+  
+  
+  } else {
+	Player::AskInfo(player);
+	renderer->Render("\nPlayer statistics:\n\n");
+	player.PrintSummary();
+  }
   renderer->Render("\nAnd behold, the adventure begins!\n");
   
   player.SetGame(this);
@@ -150,4 +155,37 @@ Game::SetCurrentRoom( Room *pRoom )
   currentRoom = pRoom;
 }
 ////////////////////////////////////////////////////////////////////////////////
+void Game::SaveGameState() {
+	ofstream savegame("gamestate.txt");
+	if(savegame.is_open()) {
+			savegame << player.GetName() << "\r\n";
+			savegame << player.GetRace() << "\r\n";
+			savegame << player.GetClass() << "\r\n";
+			savegame << player.GetAge() << "\r\n";
+			savegame << player.GetGender() << "\r\n";
+			savegame << player.GetExperience() << "\r\n";
+			savegame << player.GetHitpoints() << "\r\n";
+			savegame << currentRoom->GetRoomID() << "\r\n";
+
+			MonsterRoom *room = dynamic_cast<MonsterRoom*>(rooms[kMonster]);
+			if(room != NULL) {
+				savegame << room->GetEnemy().GetHitpoints() << "\r\n";
+			}
+			savegame.close();
+	}
+}
+int Game::LoadGameState() {
+	string line;
+	ifstream savegame("gamestate.txt");
+	if(savegame.is_open()) {
+		while(savegame.good()) {
+			getline(savegame, line);
+			cout << line << endl;
+		}
+		savegame.close();	
+		return 1;
+	}
+	return 0;
+	
+}
 
