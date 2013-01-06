@@ -10,6 +10,7 @@
 #include "Enemy.h"
 #include <sstream>
 #include "MoveCommand.h"
+#include "globals.h"
 ////////////////////////////////////////////////////////////////////////////////
 class MonsterRoom : public Room
 {
@@ -25,7 +26,7 @@ public:
   }
   ////////////////////
   /// Makes enemy attack player once on every turn.
-  void Update()
+  void Update() 
   {
     if ( e.IsAlive() && noticedPlayer )
     {
@@ -35,7 +36,11 @@ public:
       GetGame()->GetRenderer()->Render(s.str());
 
       e.Attack(&player);
+	  if(player.GetHitpoints() <= 0) {
+		throw GameOverException();
+	  }
     }
+
     noticedPlayer = true;
   }
   ////////////////////

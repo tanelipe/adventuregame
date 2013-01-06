@@ -80,26 +80,28 @@ void Game::Play()
   
   player.SetGame(this);
   
-  srand(time(NULL));
-  while(running)
-  {
-    renderer->Render(GetCurrentRoom()->GetDescription());
-    renderer->Render("\n> ");
+  try {
+	srand(time(NULL));
+	while(running)
+	{
+		renderer->Render(GetCurrentRoom()->GetDescription());
+		renderer->Render("\n> ");
 
-    getline(cin,cmd);
+		getline(cin,cmd);
 
-    CommandFactory comm(this);
-    ICommand *pCommand = comm.Create( cmd ); 
-    if ( pCommand ) pCommand->Execute();
-    delete pCommand;
+		CommandFactory comm(this);
+		ICommand *pCommand = comm.Create( cmd ); 
+		if ( pCommand ) pCommand->Execute();
+			delete pCommand;
 
-    GetCurrentRoom()->Update();
+		GetCurrentRoom()->Update();
       
-    if ( player.GetHitpoints() <= 0 ) {
-      
-      renderer->Render("You're dead. Game over.\n");
-      running = false;
-    }
+		if ( player.GetHitpoints() <= 0 ) {
+			//throw GameOverException();
+		}
+	}
+  } catch(GameOverException &exception) {
+	renderer->Render("You have died.\n");
   }
   // final message to player
   renderer->Render("Exiting, bye!\n");

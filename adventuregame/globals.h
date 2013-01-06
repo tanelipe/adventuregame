@@ -7,4 +7,7 @@
 #ifndef __globals_h__
 #define __globals_h__
 enum Direction { North, South, East, West, kNumDirs };
+
+struct GameOverException { };
+
 #endif
