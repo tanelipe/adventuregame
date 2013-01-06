@@ -15,6 +15,7 @@ public:
   
   void Execute()
   {
+    // Taneli Peltoniemi
 	GetGame()->SaveGameState();
     GetGame()->GetRenderer()->Render("Game state saved!");
   }

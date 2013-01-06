@@ -32,7 +32,7 @@ public:
   const std::string & GetDescription() const;
   void   SetNextRoom( Direction d, Room * pRoom );
   Room * GetNextRoom( Direction d );
-  
+  // Taneli Peltoniemi
   int GetRoomID() const;
 
   virtual Room * OnMoveCommand( MoveCommand *pCommand );

@@ -33,7 +33,7 @@ public:
   Player & GetPlayer();
   Room * GetCurrentRoom();
   void SetCurrentRoom( Room *pRoom );
-  
+  // Taneli Peltoniemi
   void SaveGameState();
   int LoadGameState();
 };

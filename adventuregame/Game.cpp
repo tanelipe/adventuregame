@@ -156,6 +156,7 @@ Game::SetCurrentRoom( Room *pRoom )
   currentRoom = pRoom;
 }
 ////////////////////////////////////////////////////////////////////////////////
+// Taneli Peltoniemi
 void Game::SaveGameState() {
 	ofstream savegame("gamestate.txt");
 	if(savegame.is_open()) {
@@ -175,6 +176,7 @@ void Game::SaveGameState() {
 			savegame.close();
 	}
 }
+// Taneli Peltoniemi
 int Game::LoadGameState() {
 	ifstream savegame("gamestate.txt");
 	if(savegame.is_open()) {
