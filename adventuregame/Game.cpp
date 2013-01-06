@@ -95,13 +95,9 @@ void Game::Play()
 			delete pCommand;
 
 		GetCurrentRoom()->Update();
-      
-		if ( player.GetHitpoints() <= 0 ) {
-			//throw GameOverException();
-		}
 	}
   } catch(GameOverException &exception) {
-	renderer->Render("You have died.\n");
+	renderer->Render(exception.what());
   }
   // final message to player
   renderer->Render("Exiting, bye!\n");

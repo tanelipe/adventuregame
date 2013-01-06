@@ -37,7 +37,7 @@ public:
 
       e.Attack(&player);
 	  if(player.GetHitpoints() <= 0) {
-		throw GameOverException();
+		throw GameOverException("You have died");
 	  }
     }
 
