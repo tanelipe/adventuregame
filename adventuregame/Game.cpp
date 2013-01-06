@@ -76,6 +76,7 @@ void Game::Play()
   renderer->Render(s.str());
   if(LoadGameState()) {
   
+	renderer->Render("\nWe have loaded a saved game now!\n");
   
   } else {
 	Player::AskInfo(player);
@@ -175,17 +176,29 @@ void Game::SaveGameState() {
 	}
 }
 int Game::LoadGameState() {
-	string line;
 	ifstream savegame("gamestate.txt");
 	if(savegame.is_open()) {
-		while(savegame.good()) {
-			getline(savegame, line);
-			cout << line << endl;
+		int iTmp;
+		string sTmp;
+		int cTmp;
+		
+		savegame >> sTmp; player.SetName(sTmp);
+		savegame >> sTmp; player.SetRace(sTmp);
+		savegame >> iTmp; player.SetClass((Class)iTmp);
+		savegame >> iTmp; player.SetAge(iTmp);
+		savegame >> cTmp; player.SetGender( (cTmp == 'm' ? Male : Female) );
+		savegame >> iTmp; player.SetExperience(iTmp);
+		savegame >> iTmp; player.SetHitpoints(iTmp);
+		savegame >> iTmp; currentRoom = rooms[iTmp];
+		
+		MonsterRoom *room = dynamic_cast<MonsterRoom*>(rooms[kMonster]);
+		if(room != NULL) {
+			savegame >> iTmp;
+			room->GetEnemy().SetHitpoints(iTmp);
 		}
 		savegame.close();	
 		return 1;
 	}
 	return 0;
-	
 }
 
