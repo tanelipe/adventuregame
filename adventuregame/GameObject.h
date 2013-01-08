@@ -40,7 +40,7 @@ class GameObject : public Attacker, public Updateable
 
 private:
   
-  string name;
+  	string name;
   
 	string race;
   
