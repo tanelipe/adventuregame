@@ -43,8 +43,7 @@ GameObject::~GameObject()
 }
 ////////////////////////////////////////////////////////////////////////////////
 
-void
-GameObject::Attack( GameObject *pObject )
+void GameObject::Attack( GameObject *pObject )
 
 {
   
@@ -68,159 +67,143 @@ GameObject::Attack( GameObject *pObject )
 	{
 		cout << GetName() << " misses!\n";
 	
-}
+	}
 ////////////////////////////////////////////////////////////////////////////////
 
 
-	int 
-GameObject::GetHitpoints() const
+	int GameObject::GetHitpoints() const
 
 	{
   
 		return hitpoints;
 	
-}
+	}
 ////////////////////////////////////////////////////////////////////////////////
 
-
-	void 
-GameObject::SetHitpoints(int hp )
+	void GameObject::SetHitpoints(int hp )
 	
-{
+	{
   
 		hitpoints = hp;
 	
-}
+	}
 ////////////////////////////////////////////////////////////////////////////////
 
 	
 
-void 
-GameObject::SetName( string name) 
+	void GameObject::SetName( string name) 
 	
-{
+	{
   
 		this->name = name;
 
 	}
 ////////////////////////////////////////////////////////////////////////////////
 
-	string 
-GameObject::GetName() const
+	string GameObject::GetName() const
 	
-{
+	{
   
 		return name;
 
 	}
 ////////////////////////////////////////////////////////////////////////////////
 
-	void 
-GameObject::SetClass( Class c)
+	void GameObject::SetClass( Class c)
 
 	{
   
 		myClass = c;
 	
-}
+	}
 ////////////////////////////////////////////////////////////////////////////////
 
-	Class 
-GameObject::GetClass() const
+	Class GameObject::GetClass() const
 
 	{
   
 		return myClass;
 	
-}
+	}
 ////////////////////////////////////////////////////////////////////////////////
 
-	void 
-GameObject::SetAge( unsigned short int age )
+	void GameObject::SetAge( unsigned short int age )
 	
-{
+	{
   
 		this->age = age;
 
 	}
 ////////////////////////////////////////////////////////////////////////////////
 	
-unsigned short int 
-GameObject::GetAge() const
+	unsigned short int GameObject::GetAge() const
 	
-{
+	{
   
 		return age;
 
 	}
 ////////////////////////////////////////////////////////////////////////////////
-	void 
-GameObject::SetGender( Gender g )
+	void GameObject::SetGender( Gender g )
 	
-{
+	{
   
 		gender = g;
 
 	}
 ////////////////////////////////////////////////////////////////////////////////
 	
-Gender 
-GameObject::GetGender() const
+	Gender GameObject::GetGender() const
 	
-{
+	{
   
 		return gender;
 	
-}
+	}
 ////////////////////////////////////////////////////////////////////////////////
 	
-void 
-GameObject::SetExperience( int experience )
+	void GameObject::SetExperience( int experience )
 
 	{
   
 		this->experience = experience;
 	
-}
+	}
 ////////////////////////////////////////////////////////////////////////////////
 
-	int 
-GameObject::GetExperience() const
+	int GameObject::GetExperience() const
 	
-{
+	{
   
 		return experience;
 	
-}
+	}
 ////////////////////////////////////////////////////////////////////////////////
-	void 
-GameObject::SetRace( string r )
+	void GameObject::SetRace( string r )
 	
-{
+	{
   
 		race = r;
 	
-}
+	}
 ////////////////////////////////////////////////////////////////////////////////
 
-	string 
-GameObject::GetRace() const
+	string GameObject::GetRace() const
 	
-{
+	{
   
 		return race;
 	
-}
+	}
 ////////////////////////////////////////////////////////////////////////////////
 	
-void
-GameObject::Update()
+	void GameObject::Update()
 
 	{
   
 
 	
-}
+	}
 ////////////////////////////////////////////////////////////////////////////////
 
 }
