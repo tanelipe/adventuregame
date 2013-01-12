@@ -13,15 +13,21 @@ class Room;
 enum RoomId { kDungeon, kHallway, kMonster, kChambers, kNumRooms };
 #include "Player.h"
 #include "Enemy.h"
+//-- Nina Ranta --
+#include "Gold.h"
+//----
 ////////////////////////////////////////////////////////////////////////////////
 class Game 
 {
 private:
   bool running;
   Player player;
+  //--- Nina Ranta ---  
+  Gold gold;
+  //----
   IRenderer *renderer;
-  Room      *rooms[kNumRooms]; ///< Map.
-  Room      *currentRoom;
+  Room *rooms[kNumRooms]; ///< Map.
+  Room *currentRoom;
 public:
   Game();
   virtual ~Game();
@@ -31,9 +37,14 @@ public:
   bool IsRunning() const;
   void SetRunning(bool bFlag ) ;
   Player & GetPlayer();
+  //--- Nina Ranta ---
+  Gold & GetGold();
+  //------
   Room * GetCurrentRoom();
   void SetCurrentRoom( Room *pRoom );
-  // Taneli Peltoniemi
+  
+  
+          // Taneli Peltoniemi
   void SaveGameState();
   int LoadGameState();
 };
