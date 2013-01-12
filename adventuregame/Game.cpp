@@ -57,7 +57,9 @@ Game::Game() : running(true)
   
   currentRoom = rooms[kDungeon];
 
-
+  //--- Nina Ranta ---
+  gold.ZeroCountAmount(0);
+  //---
 
 }
 ////////////////////////////////////////////////////////////////////////////////
@@ -70,19 +72,20 @@ Game::~Game()
 void Game::Play()
 {
   string cmd;
+  
   renderer->Render("Welcome to Fiends'n'Frogs adventure game!\n");
   ostringstream s;
   s << "by " << DEV_NAME << "(c) " << YEAR << ". Licensed under GPLv3.\n";
   renderer->Render(s.str());
-  if(LoadGameState()) {
-  
-	renderer->Render("\nWe have loaded a saved game now!\n");
-  
-  } else {
+  // if(LoadGameState()) {
+  //
+//	renderer->Render("\nWe have loaded a saved game now!\n");
+ // 
+ // } else {
 	Player::AskInfo(player);
 	renderer->Render("\nPlayer statistics:\n\n");
 	player.PrintSummary();
-  }
+//  }
   renderer->Render("\nAnd behold, the adventure begins!\n");
   
   player.SetGame(this);
@@ -143,6 +146,15 @@ Game::GetPlayer()
   return player;
 }
 ////////////////////////////////////////////////////////////////////////////////
+//--- Nina Ranta ---
+Gold & 
+Game::GetGold()
+{
+  return gold;
+}
+
+//------------------
+////////////////////////////////////////////////////////////////////////////////
 
 Room *
 Game::GetCurrentRoom()
@@ -167,6 +179,9 @@ void Game::SaveGameState() {
 			savegame << player.GetGender() << "\r\n";
 			savegame << player.GetExperience() << "\r\n";
 			savegame << player.GetHitpoints() << "\r\n";
+			//--- Nina Ranta ---
+			savegame << gold.GetCountAmount() << "\r\n";
+			//------------------
 			savegame << currentRoom->GetRoomID() << "\r\n";
 
 			MonsterRoom *room = dynamic_cast<MonsterRoom*>(rooms[kMonster]);
@@ -191,6 +206,11 @@ int Game::LoadGameState() {
 		savegame >> cTmp; player.SetGender( (cTmp == 'm' ? Male : Female) );
 		savegame >> iTmp; player.SetExperience(iTmp);
 		savegame >> iTmp; player.SetHitpoints(iTmp);
+
+		//--- Nina Ranta ---
+		savegame >> iTmp; gold.SetCountAmount(iTmp);
+                //------------------
+		
 		savegame >> iTmp; currentRoom = rooms[iTmp];
 		
 		MonsterRoom *room = dynamic_cast<MonsterRoom*>(rooms[kMonster]);
