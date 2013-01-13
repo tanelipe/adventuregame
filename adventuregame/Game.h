@@ -17,6 +17,7 @@ enum RoomId { kDungeon, kHallway, kMonster, kChambers, kNumRooms };
 #include "Gold.h"
 //----
 ////////////////////////////////////////////////////////////////////////////////
+// Juha Perala - Added '<<' operator overloading for IRenderer
 class Game 
 {
 private:
@@ -25,7 +26,7 @@ private:
   //--- Nina Ranta ---  
   Gold gold;
   //----
-  IRenderer *renderer;
+  IRenderer& renderer;
   Room *rooms[kNumRooms]; ///< Map.
   Room *currentRoom;
 public:
@@ -33,7 +34,7 @@ public:
   virtual ~Game();
   void Play();
   void SetRenderer( IRenderer *pRenderer );
-  IRenderer * GetRenderer() const;
+  IRenderer & GetRenderer() const;
   bool IsRunning() const;
   void SetRunning(bool bFlag ) ;
   Player & GetPlayer();

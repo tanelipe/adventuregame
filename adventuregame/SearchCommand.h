@@ -13,6 +13,7 @@
 #include <sstream>
 #include "IRenderer.h"
 ////////////////////////////////////////////////////////////////////////////////
+// Juha Perala - Added '<<' operator overloading for IRenderer
 class SearchCommand : public Command
 {
 public:
@@ -32,11 +33,11 @@ public:
       s << "You have now " << GetGame()->GetGold().GetCountAmount() << " amount of gold!\n";
       // ----
       
-      GetGame()->GetRenderer()->Render(s.str());
+      GetGame()->GetRenderer() << s.str();
       delete g;
     }
     else {
-      GetGame()->GetRenderer()->Render( "You found nothing.\n");
+      GetGame()->GetRenderer() << "You found nothing.\n";
     }
   }
 };
